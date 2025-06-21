@@ -118,23 +118,35 @@ fetch(`${window.location.origin}/memberApi`)
         }
          
        })
-        let xValue = [];
-        let barColors = [
-            "#FF5733", "#33FF57", "#3357FF", "#F0F33F", "#FF33F6", "#33FFF0",
-            "#F4A742", "#4A90E2", "#E94E77", "#B5E8E0", "#D4E157", "#E67E22"
-        ];
+       let xValue = [];
+let barColors = [
+    "#FF5733", "#33FF57", "#3357FF", "#F0F33F", "#FF33F6", "#33FFF0",
+    "#F4A742", "#4A90E2", "#E94E77", "#B5E8E0", "#D4E157", "#E67E22"
+];
 
-        let now = new Date();
-        const monthNames = [
-            "January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"
-        ];
+let yValue = Array(12).fill(0); // ✅ Initialize an array of 12 zeros
 
-        // Populate xValue with month names
-        for (let i = 0; i < 12; i++) {
-            xValue[i] = monthNames[i];
-        }
-        // Process dates
+function addMonth(month) {
+    if (month >= 0 && month < 12) {
+        yValue[month]++;
+    }
+}
+
+let now = new Date();
+const monthNames = [
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+];
+
+// Populate xValue with month names
+for (let i = 0; i < 12; i++) {
+    xValue[i] = monthNames[i];
+}
+
+// This block should be run after fetching `r` (your data)
+fetch(`${window.location.origin}/memberApi`)
+    .then(data => data.json())
+    .then(r => {
         let allDate = r.map(member => member.membership_date);
         let year = now.getFullYear();
 
@@ -147,12 +159,14 @@ fetch(`${window.location.origin}/memberApi`)
                 }
             }
         }
+
         // Adjust colors based on yValue
         for (let i = 0; i < yValue.length; i++) {
             if (yValue[i] < 5) {
                 barColors[i] = "tomato";
             }
         }
+
         // Create the chart
         new Chart("myChart", {
             type: "bar",
@@ -171,6 +185,8 @@ fetch(`${window.location.origin}/memberApi`)
                 }
             }
         });
+    });
+
         const oneMonth= [];
 const threeMonths = [];
 const sixMonths = [];

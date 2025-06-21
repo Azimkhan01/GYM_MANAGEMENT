@@ -22,6 +22,7 @@ function getExpiry(startDate, duration) {
   }
 
   const expiryDate = start.toISOString().split("T")[0];
+  // console.log(expiryDate)
   return expiryDate;
 }
 
@@ -35,6 +36,7 @@ const handleUpdate = async (req, res) => {
     let whatsapp = req.body.whatsapp;
     let offer = req.body.offer;
     let image = req.body.image;
+    let status = req.body.status
 
     let expiry_date = getExpiry(membership_date, membership_duration);
 
@@ -47,7 +49,7 @@ const handleUpdate = async (req, res) => {
     }
 
     let data = await membership.updateOne(
-      { whatsapp: whatsapp },
+      {whatsapp:whatsapp},
       {
         name: name,
         gmail: gmail,
@@ -56,7 +58,8 @@ const handleUpdate = async (req, res) => {
         fees_paid: fees_paid,
         offer: offer,
         image: image,
-        expiry_date: expiry_date,
+        status:status,
+        expiry: expiry_date,
       }
     );
 

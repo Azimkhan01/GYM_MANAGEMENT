@@ -15,10 +15,20 @@ a {
     text-decoration: none;
     color: #00bcd4;
     transition: color 0.3s;
-}
+} 
 
 a:hover {
     color: #ffffff;
+}
+
+.table-section {
+  overflow: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+.table-section::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
 }
 
 /* Main Container Styling */

@@ -1,6 +1,7 @@
 const { membership } = require("../database/registeredUser");
 const { main, backup } = require("./mailService");
 require("dotenv").config();
+
 function getExpiry(startDate, duration) {
   const start = new Date(startDate);
 
@@ -27,6 +28,15 @@ function getExpiry(startDate, duration) {
   return expiryDate;
 }
 
+function getTotalDays(startDate, endDate) {
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+
+  const diffTime = Math.abs(end - start);
+  const totalDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  return totalDays;
+}
+
 const handleInsert = async (req, res) => {
   let {
     name,
@@ -36,27 +46,35 @@ const handleInsert = async (req, res) => {
     membership_duration,
     fees_paid,
     offer,
+    status
   } = await req.body;
+
   let find = await membership.find({ whatsapp: whatsapp });
+
   if (find != undefined || find != "") {
     let id = (await membership.countDocuments({})) + 1;
     id = process.env.gymName + "-" + id;
 
-    //middleware of file upload
+    // Construct image path
+    let image = `/public/image/${id}.jpg`;
 
-    image = `/public/image/${id}.jpg`;
+    // Calculate expiry and total days
     let expiry = await getExpiry(membership_date, membership_duration);
+    let totalDays = getTotalDays(membership_date, expiry);
+
     let insertMember = await membership.create({
-      id: id,
+      id,
       name,
       whatsapp,
       gmail,
       membership_date,
       membership_duration,
       fees_paid,
-      expiry: expiry,
+      expiry,
       offer,
-      image: image,
+      image,
+      status,
+      total_days: totalDays
     });
 
     if (insertMember) {

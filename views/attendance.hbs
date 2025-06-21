@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mark Attendance</title>
+    <link rel="stylesheet" href="/public/css/attendance.css" />
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <a href="/dashboard">Home</a>
+        <h2>Mark Attendance</h2>
+
+        <!-- Fake Member Info Preview -->
+        <div class="member-info">
+            <div>
+                <img src="/public/default/image.png" alt="Member Image" id="member-image">
+                <p id="member-name">Name: John Doe</p>
+                <p id="member-expiry">Expiry Date: 2025-08-01</p>
+                <p id="member-days">Total Days: 30</p>
+                <p id="member-remaining">Remaining Days: 5</p>
+            </div>
+        </div>
+
+        <form id="attendance-form">
+            <div class="form-group">
+                <label for="membership-id">Membership ID</label>
+                <div style="display: flex;gap:10px;align-items: center;">
+
+                    <span id="gym_name">{{gym_name}}-</span><input type="number" id="membership-id" name="membership_id"
+                        placeholder="Enter Membership ID" required />
+                </div>
+            </div>
+            <button id="attendance_mark" type="button">Mark Attendance</button>
+            <p id="alert"></p>
+        </form>
+        <p id="status">{{status}}</p>
+    </div>
+
+    <script src="/public/js/attendance.js"></script>
+</body>
+
+</html>

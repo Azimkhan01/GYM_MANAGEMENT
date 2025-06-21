@@ -9,6 +9,16 @@ body {
     overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
+/* inserting radio then addded that radio css here */
+
+.radio-in-insert,.radio-in-insert label{
+    display: flex;
+    padding: 10px;
+    justify-content: start;
+    align-items: center;
+}
+
+
 /* Form Container Styling */
 .form-container {
     width: 100%;

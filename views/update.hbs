@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The {{gymName}} Gym - Update Membership</title>
     <link rel="stylesheet" href="/public/css/update.css">
 </head>
+
 <body>
     <div class="form-container">
         <a href="/dashboard" class="back-to-home">Back to Home</a>
         <h1>The {{gymName}} Gym - Update Membership</h1>
-        <form action="/update" method="POST" >
+        <form action="/update" method="POST">
             <div class="form-group">
                 <label for="membership-id">Membership ID:</label>
                 <input type="text" id="membership-id" name="membership_id" readonly>
@@ -56,10 +58,22 @@
                 <input type="text" id="offer" name="offer" required>
             </div>
 
+            <!-- New Radio Buttons for Status -->
             <div class="form-group">
-                
-                 <label for="image">Image:</label>
-                <input type="text" id="image" name="image" >
+                <label>Status:</label>
+                <div class="radio-in-insert">
+                    <input type="radio" id="pending" name="status" value="Pending" required>
+                    <label for="pending">Pending</label>
+                    <input type="radio" id="clear" name="status" value="Clear">
+                    <label for="clear">Clear</label>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="image">Image:</label>
+                <input type="text" id="image" name="image">
             </div>
 
             <div class="form-group">
@@ -76,4 +90,5 @@
     </div>
     <script src="/public/js/update.js"></script>
 </body>
+
 </html>

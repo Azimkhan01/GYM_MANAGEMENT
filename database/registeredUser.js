@@ -42,6 +42,13 @@ const registeredSchema = new mongoose.Schema({
     },image:{
         type:String,
         trim:true
+    },
+    status:{
+        type:String,
+        trim:true
+    },total_days:{
+        type:Number,
+        trim:true
     }
 },
 {

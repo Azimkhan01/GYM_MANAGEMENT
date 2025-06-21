@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The {{gymName}} Gym - Membership Form</title>
     <link rel="stylesheet" href="/public/css/insert.css">
 </head>
+
 <body>
     <div class="form-container">
         <a href="/dashboard" class="back-to-home">Back to Home</a>
         <h1>The {{gymName}} - Membership Form</h1>
+        <img id="preview-image" src="/public/default/image.png" alt="Uploaded Preview" style="max-width:200px; margin:20px auto; border-radius:10px; border:2px solid #ccc; display:block;" />
         <form action="/insert" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="name">Name:</label>
@@ -52,12 +55,24 @@
                 <input type="text" id="offer" name="offer">
             </div>
 
+            <!-- New Radio Buttons for Status -->
+            <div class="form-group">
+                <label>Status:</label>
+                <div class="radio-in-insert" >
+                    <input type="radio" id="pending" name="status" value="Pending" required>
+                    <label for="pending">Pending</label>
+                     <input type="radio" id="clear" name="status" value="Clear">
+                    <label for="clear">Clear</label>
+                </div>
+            </div>
+
+
             <!-- New File Upload Section -->
             <div class="form-group">
-    <label for="file-upload" class="file-upload-label">Upload Document</label>
-    <input type="file" id="file-upload" name="uploaded_file" required>
-    <span id="file-upload-name" class="file-upload-name">No file selected</span>
-</div>
+                <label for="file-upload" class="file-upload-label">Upload Document</label>
+                <input type="file" id="file-upload" name="uploaded_file" required>
+                <span id="file-upload-name" class="file-upload-name">No file selected</span>
+            </div>
 
 
             <div class="form-group" id="data_status">
@@ -71,4 +86,5 @@
     </div>
     <script src="/public/js/insert.js"></script>
 </body>
+
 </html>

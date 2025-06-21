@@ -7,11 +7,13 @@ let membershipDuration = document.getElementById("membership-duration");
 let feesPaid = document.getElementById("fees-paid");
 let image = document.getElementById("image");
 let offer = document.getElementById("offer");
-
+let pending = document.getElementById('pending')
+let remaining = document.getElementById('remaining')
 whatsapp.addEventListener("change", (e) => {
   fetch(`${window.location.origin}/memberApi`)
     .then((data) => data.json())
     .then((r) => {
+      console.log(r)
       let status = document.getElementById("status");
       status.innerHTML = ``;
       let submit = document.getElementById("submit");
@@ -27,6 +29,10 @@ whatsapp.addEventListener("change", (e) => {
           feesPaid.value = r[i]["fees_paid"];
           offer.value = r[i]["offer"];
           image.value = r[i]["image"];
+          if(r[i]["status"] == "Pending")
+            pending.checked = true
+          if(r[i]["status"] == "Clear")
+            remaining.checked = true
           let status = document.getElementById("status");
           status.innerHTML = ``;
           let submit = document.getElementById("submit");

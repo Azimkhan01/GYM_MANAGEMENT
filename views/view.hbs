@@ -1,69 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The {{gymName}} Gym - Membership Table</title>
-    <link rel="stylesheet" href="/public/css/view.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The {{gymName}} Gym - Membership Table</title>
+  <link rel="stylesheet" href="/public/css/view.css" />
+  <style>
+    .table_container {
+      overflow: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .table_container::-webkit-scrollbar {
+      display: none;
+    }
+    .passport {
+      height: 50px;
+      width: 50px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+  </style>
 </head>
 <body>
-    <!-- New div at the top for displaying the comma-separated number -->
-    <div class="top-info-container">
-        <div ><p height:"30%" id="commaNumber">Click On Show Expiry Membership</p></div>
+  <div class="top-info-container">
+    <p id="commaNumber">Click On Show Expiry Membership</p>
+  </div>
+
+  <div id="copy" style="display:flex;justify-content:center">
+    <button style="margin-top: 2%;" class="print-button" onclick="copyIt()">Copy</button>
+  </div>
+
+  <div class="container">
+    <nav class="nav-bar">
+      <a href="/dashboard" class="back-link">Back to Home</a>
+    </nav>
+
+    <div class="form-container">
+      <form action="/member" method="POST">
+        <button type="submit" id="sendMail">Send Mail</button>
+        <p id="status" style="color: {{color}};">{{status}}</p>
+      </form>
     </div>
-    <div id="copy" style="display:flex;justify-content:center">
-         <button style="margin-top: 2%;" class="print-button" onclick="copyIt()">Copy</button>
-         </div>
 
-    <div class="container">
-        <nav class="nav-bar">
-            <a href="/dashboard" class="back-link">Back to Home</a>
-        </nav>
+    <h1>The {{gymName}} Gym - Membership Table</h1>
 
-        <!-- Form to Send Mail -->
-        <div class="form-container">
-            <form action="/member" method="POST">
-                <button type="submit" id="sendMail">Send Mail</button>
-                <p id="status" style="color: {{color}};">{{status}}</p>
-            </form>
-        </div>
-        
-        <h1>The {{gymName}} Gym - Membership Table</h1>
-        <div class="filter-container">
-            <label for="filter">Filter:</label>
-            <select id="filter" name="filter">
-                <option value="all">Show All</option>
-                <option value="expiry">Expiry</option>
-            </select>
-        </div>
-        
-        <!-- Expiry and Print Buttons -->
-        <div class="button-container">
-            <button id="printButton" class="print-button">Print Table</button>
-            <button id="expiryButton" class="filter-button print-button" onclick="getExpiredList()">Show Expired Memberships</button>
-        </div>
-
-        <table id="membership-table">
-            <thead>
-                <tr>
-                    <th>Membership ID</th>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>WhatsApp Number</th>
-                    <th>Gmail</th>
-                    <th>Membership Date</th>
-                    <th>Membership Duration</th>
-                    <th>Fees Paid</th>
-                    <th>Expiry Date</th>
-                    <th>Offer</th>
-                </tr>
-            </thead>
-            <tbody id="table_body">
-                <!-- Add more demo rows as needed -->
-            </tbody>
-        </table>
+    <div class="filter-container">
+      <label for="filter">Filter:</label>
+      <select id="filter" name="filter">
+        <option value="all">Show All</option>
+        <option value="expiry">Expiry</option>
+        <option value="pending">Pending</option>
+        <option value="clear">Clear</option>
+      </select>
     </div>
-    <script src="/public/js/view.js"></script>
-    <!-- New external script -->
+
+    <div class="button-container">
+      <button id="printButton" class="print-button">Print Table</button>
+      <button id="expiryButton" class="print-button" onclick="getExpiredList()">Show Expired Memberships</button>
+      <button id="pendingButton" class="print-button" onclick="getPendingList()">Show Pending Memberships</button>
+    </div>
+
+    <div class="table_container">
+      <table id="membership-table">
+        <thead>
+          <tr>
+            <th>Membership ID</th>
+            <th>Image</th>
+            <th>Name</th>
+            <th>WhatsApp Number</th>
+            <th>Gmail</th>
+            <th>Membership Date</th>
+            <th>Membership Duration</th>
+            <th>Fees Paid</th>
+            <th>Expiry Date</th>
+            <th>Offer</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="table_body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="/public/js/view.js"></script>
 </body>
 </html>

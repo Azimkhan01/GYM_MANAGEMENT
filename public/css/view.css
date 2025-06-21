@@ -52,6 +52,15 @@ body {
     margin: 0; /* Remove default paragraph margins */
 }
 
+.table_container {
+  overflow: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+
+.table_container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
 
 .container {
     margin: 20px;
