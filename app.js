@@ -18,7 +18,7 @@ app.use("/",router);
 
 app.set("view engine","hbs");
 hbs.registerPartials(path.join(__dirname,"/views/partials"));
-
+require('./utils/attendance')
 let port = process.env.port || 8000
 app.listen(port,"127.0.0.1",()=>{
     console.log(`The application is running on 127.0.0.1:${port}`);

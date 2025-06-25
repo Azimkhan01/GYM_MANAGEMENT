@@ -79,7 +79,6 @@ const handleInsert = async (req, res) => {
 
     if (insertMember) {
       let allD = await membership.find({});
-      await backup(allD);
       await main(name, membership_date, membership_duration, expiry, gmail);
       res.render("insert", {
         color: "green",

@@ -48,6 +48,11 @@ function getRandomOffer() {
     return offers[Math.floor(Math.random() * offers.length)];
 }
 
+// Get random status
+function getRandomStatus() {
+    return Math.random() < 0.5 ? "Pending" : "Clear";
+}
+
 // Create image path
 function getImageURL(id) {
     return `/public/image/${id}.jpg`;
@@ -62,8 +67,8 @@ if (!process.env.gymName) {
 const data = [];
 
 // Create 1000 entries
-for (let i = 1; i <= 1000; i++) {
-    const membershipDate = getRandomDateThisYear(); // Date object
+for (let i = 1; i <= 10000; i++) {
+    const membershipDate = getRandomDateThisYear();
     const duration = getRandomDuration();
     const expiry = getExpiryDate(membershipDate, duration);
 
@@ -78,6 +83,7 @@ for (let i = 1; i <= 1000; i++) {
         expiry: expiry,
         offer: getRandomOffer(),
         image: getImageURL(i),
+        status: getRandomStatus() // ✅ Added field
     };
 
     data.push(entry);

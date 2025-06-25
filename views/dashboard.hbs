@@ -35,7 +35,8 @@
             </div>
             <div class="whatsapp-reminder-container">
                 <button id="getWhatsappReminder" class="whatsapp-button">Get Reminder via WhatsApp</button>
-                <button id="copy" class="whatsapp-button" style="background-color: rgb(41, 39, 39); margin-left: 10px;" onclick="copyIt()">Copy</button>
+                <button id="copy" class="whatsapp-button" style="background-color: rgb(41, 39, 39); margin-left: 10px;"
+                    onclick="copyIt()">Copy</button>
             </div>
         </section>
 
@@ -48,6 +49,9 @@
 
         <!-- Statistics Section -->
         <section class="stats-section">
+            <div style="padding: 10px;display: flex; justify-content: center;align-items: center;" >
+                <button id="backup" class="action-button" >Send BackUp</button>
+            </div>
             <div class="stats-container">
                 <div class="stats-box">
                     <h3>Total Members</h3>
@@ -55,15 +59,26 @@
                 </div>
                 <div class="stats-box">
                     <h3>Total Fees Paid</h3>
-                    <p>
-                        <span style="color: black;">Click here:</span>
-                        <span id="showFess" style="color: rgb(178, 227, 178);">Show revenue</span>
-                    </p>
+                    <label for="revenueFilter">Select Duration:</label>
+                    <select id="revenueFilter" style="padding: 5px; margin: 5px 0;">
+                        <option value="total">Total</option>
+                        <option value="1w">Last 1 Week</option>
+                        <option value="1m">Last 1 Month</option>
+                        <option value="2m">Last 2 Months</option>
+                        <option value="6m">Last 6 Months</option>
+                        <option value="1y">Last 1 Year</option>
+                        <option value="others">Other Years</option>
+                    </select>
                     <p id="totalPrice"></p>
                 </div>
+
                 <div class="stats-box">
                     <h3>Total Expiries</h3>
                     <p id="totalExpiries"></p>
+                </div>
+                <div class="stats-box">
+                    <h3>Total Fees Pending</h3>
+                    <p id="total-Pending"></p>
                 </div>
             </div>
         </section>
@@ -78,8 +93,9 @@
         <!-- Membership Entries Section -->
         <section class="membership-entries-section">
             <h2 style="color: rgb(116, 30, 255);" id="entry">Last 5 Membership Entries</h2>
-            <label for="entryCount" style="color: #6a0dad; font-size: 16px;">Select number of entries to display:</label>
-            <input  placeholder="Enter Number Of Enteries You Want ?" type="number" id="entryCount">
+            <label for="entryCount" style="color: #6a0dad; font-size: 16px;">Select number of entries to
+                display:</label>
+            <input placeholder="Enter Number Of Enteries You Want ?" type="number" id="entryCount">
             <table id="membershipTable">
                 <thead>
                     <tr>

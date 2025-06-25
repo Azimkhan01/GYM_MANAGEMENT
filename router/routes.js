@@ -16,7 +16,8 @@ const { memberApi } = require("../controller/memberApi");
 const {membership} = require("../database/registeredUser");
 const router = express.Router();
 const multer = require("multer");
-const { attendance } = require("../controller/attendance");
+const { attendance, handleAttendance } = require("../controller/attendance");
+const { backupSend } = require("../controller/backup");
 require("dotenv").config();
 
 
@@ -50,7 +51,8 @@ router.route("/remove").post(handleRemove);
 router.route("/member").get(view);
 router.route("/member").post(handleView);
 router.route("/attendance").get(attendance);
-
+router.route("/attendance").post(handleAttendance);
+router.route('/backup').get(backupSend)
 
 router.route("/memberApi").get(memberApi);
 

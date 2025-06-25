@@ -169,6 +169,7 @@ h1, h2, h3, h4, p {
 .stats-container {
     display: flex;
     justify-content: space-between;
+    gap:10px;
     margin-bottom: 30px;
 }
 
